@@ -24,11 +24,7 @@ public class NFA {
     }
     //NEEDS WORK
     public DFA transformToDFA() {
-        DFA newDFA = new DFA();
 
-
-
-        return newDFA;
     }
 
     public ArrayList<State> getStates() {
@@ -66,10 +62,10 @@ public class NFA {
     public String toString() {
         StringBuilder result = new StringBuilder();
         if (this.states.getSize() == 0) {
-            result.append("Input alphabet: " + this.inputAlphabet + "\nNo states");
+            result.append("NFA\nInput alphabet: " + this.inputAlphabet + "\nNo states");
         }
         else {
-            result.append("Input alphabet: " + this.inputAlphabet + "\n");
+            result.append("NFA\nInput alphabet: " + this.inputAlphabet + "\n");
             for (int i = 0; i < this.states.getSize(); i++) {
                 result.append(this.states.get(i).getName() + " -> ");
                 for (int p = 0; p < this.states.get(i).getTransitions().getSize(); p++) {
