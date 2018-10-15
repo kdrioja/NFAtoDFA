@@ -1,5 +1,4 @@
 import javafx.util.Pair;
-
 import java.util.LinkedHashSet;
 
 public class NFA {
@@ -31,14 +30,22 @@ public class NFA {
         DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
         int processed = 0;
 
+        // Process start state 0
+        State startState = this.states.get(0);
         LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
-        setOfStates.add(0);
+        setOfStates.add(startState.getName());
         ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions = new ArrayList<>();
-        boolean finalState = false;
+        boolean finalState = startState.isFinalState();
 
         for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
             LinkedHashSet<Integer> values = new LinkedHashSet<>();
+            Object[] setOfStatesArray = setOfStates.toArray();
 
+            for (int s = 0; s < setOfStatesArray.length; s++) {
+                int state = (Integer) setOfStatesArray[s];
+                this.states.get(state).getTransitions().get(l)
+                values.addAll()
+            }
 
 
             Pair newTransition = new Pair<>(this.inputAlphabet.get(l), values);
