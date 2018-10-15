@@ -1,25 +1,18 @@
 import javafx.util.Pair;
-
 import java.util.LinkedHashSet;
 
 public class SetOfStates {
     private LinkedHashSet<Integer> set;
-    private boolean finalState;
     private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
+    private boolean finalState;
 
-    public SetOfStates() {
-        this.set = new LinkedHashSet<>();
-        this.finalState = false;
+    public SetOfStates(LinkedHashSet<Integer> set, ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions, boolean finalState) {
+        this.set = set;
+        this.transitions = transitions;
+        this.finalState = finalState;
     }
 
-    public void addState(State newState) {
-        if (newState != null) {
-            this.finalState = newState.isFinalState();
-            this.set.add(newState.getName());
-        }
-    }
-
-    public boolean sameSetOfStates() {
+    public boolean sameSetOfStates(SetOfStates otherSetOfStates) {
         return true;
     }
 }

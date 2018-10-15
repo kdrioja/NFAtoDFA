@@ -8,11 +8,11 @@ public class NFA {
     private ArrayList<State> states; //ArrayList.size is number of states
     private ArrayList<String> inputAlphabet;
     private int startVar;
-    private LinkedHashSet<Integer> finalVar;
+    private LinkedHashSet<Integer> finalVars;
 
     public NFA(int startVar, LinkedHashSet<Integer> finalVar, ArrayList<String> inputAlphabet) {
         this.startVar = startVar;
-        this.finalVar = finalVar;
+        this.finalVars = finalVar;
         this.inputAlphabet = inputAlphabet;
         this.states = new ArrayList<>();
     }
