@@ -68,8 +68,15 @@ public class NFA {
         dfa.addSetOfStates(startStateSet);
 
         while (processed != dfa.getStates().getSize()) {
+            Object[] stateNames = (Integer[]) dfa.getStates().get(pointer).getSetOfStates().toArray();
             for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
-                
+                String key = this.inputAlphabet.get(l);
+                LinkedHashSet<Integer> values = new LinkedHashSet<>();
+
+
+                for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
+                    
+                }
             }
         }
 
