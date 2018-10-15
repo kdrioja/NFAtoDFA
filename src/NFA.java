@@ -31,22 +31,51 @@ public class NFA {
         }
     }
 
+    private State getStartingState(){
+        for (int s = 0; s < this.states.getSize(); s++) {
+            if (this.states.get(s).getName() == this.startVar) {
+                return this.states.get(s);
+            }
+        }
+
+        return null;
+    }
+
     public DFA transformToDFA() {
         int processed = 0;
+        int pointer = 0;
         DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
         // also have member private ArrayList<SetOfStates> states;
 
         //  can be added later first create the SetOfStates and add it to dfa and then while
         //  the number of items in the dfa is != to the processed amount then keep processing the next item in the dfa's states arraylist
-        //  maybe keep a pointer outside of the loop? HMMMMMMMMMM, but first have to create the first and add it
-        //  the first is the start symbol which is 0 in this case 
+        //  maybe keep a pointer outside of the loop? HMMM, but first have to create the first and add it
+        //  the first is the start symbol which is 0 in this case
 
         // SetOfStates member variables
         // private LinkedHashSet<Integer> setOfStates;
         // private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
         // private boolean finalState;
-        // public SetOfStates(LinkedHashSet<Integer> set, ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions, boolean finalState)
+        // public SetOfStates(LinkedHashSet<Integer> set, boolean finalState) {
 
+
+        // Process start state
+        State startState = getStartingState();
+        LinkedHashSet<Integer> startSS = new LinkedHashSet<>();
+        startSS.add(this.startVar);
+        SetOfStates startStateSet = new SetOfStates(startSS, startState.isFinalState());
+
+        dfa.addSetOfStates(startStateSet);
+
+        while (processed != dfa.getStates().getSize()) {
+            for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
+                
+            }
+        }
+
+
+
+        /*
         // Process start state 0
         LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
         setOfStates.add(0);
@@ -85,6 +114,7 @@ public class NFA {
                 }
             }
         }
+        */
 
         /*
         // Process start state 0
