@@ -6,10 +6,21 @@ public class SetOfStates {
     private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
     private boolean finalState;
 
+    public SetOfStates(LinkedHashSet<Integer> set, boolean finalState) {
+        this.setOfStates = set;
+        this.transitions = new ArrayList<>();
+        this.finalState = finalState;
+    }
     public SetOfStates(LinkedHashSet<Integer> set, ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions, boolean finalState) {
         this.setOfStates = set;
         this.transitions = transitions;
         this.finalState = finalState;
+    }
+
+    public void addTransition(Pair<String, LinkedHashSet<Integer>> newTransitionPair) {
+        if (newTransitionPair != null) {
+            this.transitions.add(newTransitionPair);
+        }
     }
 
     public boolean sameSetOfStates(SetOfStates otherSetOfStates) {

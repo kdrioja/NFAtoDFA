@@ -67,7 +67,7 @@ public class NFA {
                     LinkedHashSet<Integer> trapState = new LinkedHashSet<>();
                     trapState.add(-1);
                     ArrayList<Pair<String, LinkedHashSet<Integer>>> trapTransitions = new ArrayList<>();
-                    
+
 
                 }
                 else {
