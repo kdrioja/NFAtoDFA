@@ -27,9 +27,20 @@ public class NFA {
     }
 
     public DFA transformToDFA() {
-        DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
         int processed = 0;
+        DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
+        // also have member private ArrayList<SetOfStates> states;
 
+        // SetOfStates member variables
+        // private LinkedHashSet<Integer> setOfStates;
+        // private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
+        // private boolean finalState;
+
+        // Process start state 0
+        LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
+
+
+        /*
         // Process start state 0
         State startState = this.states.get(0);
         LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
@@ -51,7 +62,7 @@ public class NFA {
             Pair newTransition = new Pair<>(this.inputAlphabet.get(l), values);
             transitions.add(newTransition);
         }
-
+        */
         return dfa;
     }
 
