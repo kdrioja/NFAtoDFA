@@ -36,6 +36,11 @@ public class NFA {
         DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
         // also have member private ArrayList<SetOfStates> states;
 
+        //  can be added later first create the SetOfStates and add it to dfa and then while
+        //  the number of items in the dfa is != to the processed amount then keep processing the next item in the dfa's states arraylist
+        //  maybe keep a pointer outside of the loop? HMMMMMMMMMM, but first have to create the first and add it
+        //  the first is the start symbol which is 0 in this case 
+
         // SetOfStates member variables
         // private LinkedHashSet<Integer> setOfStates;
         // private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
