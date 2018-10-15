@@ -36,7 +36,7 @@ public class Driver {
         tempArray.add(new Pair<>("b", null));
         a.addState(new State(2, false, tempArray));
 
-
+        System.out.println(a);
 
 
     }

@@ -55,7 +55,12 @@ public class NFA {
             for (int i = 0; i < this.states.getSize(); i++) {
                 result.append(this.states.get(i).getName() + " -> ");
                 for (int p = 0; p < this.states.get(i).getTransitions().getSize(); p++) {
-                    result.append("(" + this.states.get(i).getTransitions().get(p).getKey() + ", " + this.states.get(i).getTransitions().get(p).getValue()+ ")   ");
+                    if (this.states.get(i).getTransitions().get(p).getValue() == null) {
+                        result.append("(" + this.states.get(i).getTransitions().get(p).getKey() + ", - )   ");
+                    }
+                    else {
+                        result.append("(" + this.states.get(i).getTransitions().get(p).getKey() + ", " + this.states.get(i).getTransitions().get(p).getValue() + ")   ");
+                    }
                 }
                 result.append("\n");
             }
