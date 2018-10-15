@@ -26,15 +26,17 @@ public class NFA {
     public DFA transformToDFA() {
         DFA newDFA = new DFA();
 
+
+
         return newDFA;
     }
 
-    public ArrayList<State> getNfa() {
+    public ArrayList<State> getStates() {
         return states;
     }
 
-    public void setNfa(ArrayList<State> nfa) {
-        this.states = nfa;
+    public void setStates(ArrayList<State> states) {
+        this.states = states;
     }
 
     public ArrayList<String> getInputAlphabet() {
@@ -43,6 +45,22 @@ public class NFA {
 
     public void setInputAlphabet(ArrayList<String> inputAlphabet) {
         this.inputAlphabet = inputAlphabet;
+    }
+
+    public int getStartVar() {
+        return startVar;
+    }
+
+    public void setStartVar(int startVar) {
+        this.startVar = startVar;
+    }
+
+    public LinkedHashSet<Integer> getFinalVars() {
+        return finalVars;
+    }
+
+    public void setFinalVars(LinkedHashSet<Integer> finalVars) {
+        this.finalVars = finalVars;
     }
 
     public String toString() {

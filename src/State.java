@@ -35,4 +35,25 @@ public class State {
     public void setFinalState(boolean finalState) {
         this.finalState = finalState;
     }
+
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        if (this.finalState) {
+            result.append("Final State " + this.name + " -> ");
+        }
+        else {
+            result.append("Non-final State " + this.name + " -> ");
+        }
+
+
+        for (int i = 0; i < this.transitions.getSize(); i++) {
+            if (this.transitions.get(i).getValue() == null) {
+                result.append("(" + this.transitions.get(i).getKey() + ", - )   ");
+            }
+            else {
+                result.append("(" + this.transitions.get(i).getKey() + ", " + this.transitions.get(i).getValue() + ")   ");
+            }
+        }
+        return  result.toString();
+    }
 }

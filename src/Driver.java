@@ -37,6 +37,6 @@ public class Driver {
 
         System.out.println(a);
 
-
+        System.out.println(new State(0, false, tempArray));
     }
 }
