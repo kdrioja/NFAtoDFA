@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 import java.util.LinkedHashSet;
 
 public class NFA {
@@ -5,7 +7,9 @@ public class NFA {
     // symbols, while the rows correspond to states
     // Matrix cells are subsets of states representing the transitions for
     // the corresponding states and symbols
-    private ArrayList<State> states; //ArrayList.size is number of states
+    // Lambda is represented as 'L' in the inputAlphabet
+
+    private ArrayList<State> states;
     private ArrayList<String> inputAlphabet;
     private int startVar;
     private LinkedHashSet<Integer> finalVars;
@@ -22,9 +26,26 @@ public class NFA {
             this.states.add(newState);
         }
     }
-    //NEEDS WORK
-    public DFA transformToDFA() {
 
+    public DFA transformToDFA() {
+        DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
+        int processed = 0;
+
+        LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
+        setOfStates.add(0);
+        ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions = new ArrayList<>();
+        boolean finalState = false;
+
+        for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
+            LinkedHashSet<Integer> values = new LinkedHashSet<>();
+
+
+
+            Pair newTransition = new Pair<>(this.inputAlphabet.get(l), values);
+            transitions.add(newTransition);
+        }
+
+        return dfa;
     }
 
     public ArrayList<State> getStates() {
