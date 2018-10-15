@@ -1,4 +1,6 @@
 import javafx.util.Pair;
+import sun.awt.image.ImageWatched;
+
 import java.util.LinkedHashSet;
 
 public class NFA {
@@ -6,18 +8,21 @@ public class NFA {
     // symbols, while the rows correspond to states
     // Matrix cells are subsets of states representing the transitions for
     // the corresponding states and symbols
-    // Lambda is represented as 'L' in the inputAlphabet
+    // Lambda is represented as 'L' in the inputAlphabet and is always at the
+    // end of inputAlphabet and transition ArrayLists
 
     private ArrayList<State> states;
     private ArrayList<String> inputAlphabet;
     private int startVar;
     private LinkedHashSet<Integer> finalVars;
+    private boolean lambdaTransitions;
 
-    public NFA(int startVar, LinkedHashSet<Integer> finalVar, ArrayList<String> inputAlphabet) {
+    public NFA(int startVar, LinkedHashSet<Integer> finalVar, ArrayList<String> inputAlphabet, boolean lambdaTransitions) {
         this.startVar = startVar;
         this.finalVars = finalVar;
         this.inputAlphabet = inputAlphabet;
         this.states = new ArrayList<>();
+        this.lambdaTransitions = lambdaTransitions;
     }
 
     public void addState(State newState) {
@@ -42,6 +47,7 @@ public class NFA {
         setOfStates.add(0);
         ArrayList<Pair<String, LinkedHashSet<Integer>>> startTransitions = this.states.get(0).getTransitions();
         ArrayList<Pair<String, LinkedHashSet<Integer>>> newTransitions = new ArrayList<>();
+        boolean finalState = this.states.get(0).isFinalState();
 
         for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
             String key = this.inputAlphabet.get(l);
@@ -56,10 +62,21 @@ public class NFA {
                     value = new LinkedHashSet<>();
                     value.add(-1);
                     newTransitions.add(new Pair<>(key, value));
+                    dfa.addSetOfStates(new SetOfStates(setOfStates, newTransitions, finalState));
+
+                    LinkedHashSet<Integer> trapState = new LinkedHashSet<>();
+                    trapState.add(-1);
+                    ArrayList<Pair<String, LinkedHashSet<Integer>>> trapTransitions = new ArrayList<>();
+                    
 
                 }
                 else {
-
+                    if(this.lambdaTransitions) {
+                        //last elem of alphabet is L
+                    }
+                    else {
+                        dfa.addSetOfStates(new SetOfStates(setOfStates, newTransitions, finalState));
+                    }
                 }
             }
         }

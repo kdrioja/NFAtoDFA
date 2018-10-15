@@ -10,7 +10,7 @@ public class Driver {
         inputAlphA.add("b");
         LinkedHashSet<Integer> finalVars = new LinkedHashSet<>();
         finalVars.add(1);
-        NFA a = new NFA(0, finalVars, inputAlphA);
+        NFA a = new NFA(0, finalVars, inputAlphA, false);
         ArrayList<Pair<String, LinkedHashSet<Integer>>> tempArray = new ArrayList<>();
         LinkedHashSet<Integer> tempSet = new LinkedHashSet<>();
         tempSet.add(0);
