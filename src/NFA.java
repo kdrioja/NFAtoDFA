@@ -35,10 +35,34 @@ public class NFA {
         // private LinkedHashSet<Integer> setOfStates;
         // private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
         // private boolean finalState;
+        // public SetOfStates(LinkedHashSet<Integer> set, ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions, boolean finalState)
 
         // Process start state 0
         LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
+        setOfStates.add(0);
+        ArrayList<Pair<String, LinkedHashSet<Integer>>> startTransitions = this.states.get(0).getTransitions();
+        ArrayList<Pair<String, LinkedHashSet<Integer>>> newTransitions = new ArrayList<>();
 
+        for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
+            String key = this.inputAlphabet.get(l);
+            LinkedHashSet<Integer> value = startTransitions.get(l).getValue();
+
+            if (key.equals("L")) {
+                continue;
+            }
+            else {
+
+                if (value == null) {
+                    value = new LinkedHashSet<>();
+                    value.add(-1);
+                    newTransitions.add(new Pair<>(key, value));
+
+                }
+                else {
+
+                }
+            }
+        }
 
         /*
         // Process start state 0
