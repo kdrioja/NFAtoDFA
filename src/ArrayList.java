@@ -128,7 +128,9 @@ public class ArrayList <E> implements BareBonesArrayList<E> {
         String s = "";
 
         for (int i = 0; i < this.myArray.length; i++){
-            s += myArray[i] + " ";
+            if (myArray[i] != null) {
+                s += myArray[i] + " ";
+            }
         }
         return s;
     }

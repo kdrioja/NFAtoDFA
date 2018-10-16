@@ -68,41 +68,80 @@ public class NFA {
         dfa.addSetOfStates(startStateSet);
 
         while (processed != dfa.getStates().getSize()) {
-            Object[] stateNames = (Integer[]) dfa.getStates().get(pointer).getSetOfStates().toArray();
-            for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
-                String key = this.inputAlphabet.get(l);
-                LinkedHashSet<Integer> values = new LinkedHashSet<>();
+            Object[] stateNames = dfa.getStates().get(pointer).getSetOfStates().toArray();
+            // If trap state populate it
+            if ((int) stateNames[0] == -1) {
+                for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
+                    String key = this.inputAlphabet.get(l);
+                    LinkedHashSet<Integer> values = new LinkedHashSet<>();
 
-                if (key.equals("L")) {
-
+                    if (!key.equals("L")) {
+                        values.add(-1);
+                        Pair<String, LinkedHashSet<Integer>> newPair = new Pair<>(key, values);
+                        dfa.getStates().get(pointer).addTransition(newPair);
+                    }
                 }
-                else {
-                    for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
-                        int stateName = (Integer) stateNames[stateInSet];
-                        Object[] currentLetterTransitions = (Integer[]) this.states.get(stateName).getTransitions().get(l).getValue().toArray();
+                processed++;
+                pointer++;
+            }
 
-                        if (currentLetterTransitions != null && currentLetterTransitions.length != 0) {
-                            for (int i = 0; i < currentLetterTransitions.length; i++) {
-                                values.add((int) currentLetterTransitions[i]);
+            // Not a trap state
+            else {
+                for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
+                    String key = this.inputAlphabet.get(l);
+                    LinkedHashSet<Integer> values = new LinkedHashSet<>();
+                    boolean finalState = false;
+
+                    if (key.equals("L")) {
+
+                    }
+
+                    else {
+                        for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
+                            int stateName = (Integer) stateNames[stateInSet];
+                            LinkedHashSet<Integer> currentLetterTransitions = this.states.get(stateName).getTransitions().get(l).getValue();
+
+                            if (currentLetterTransitions != null) {
+                                Object[] currentLetterTransitionsArray = currentLetterTransitions.toArray();
+                                for (int i = 0; i < currentLetterTransitionsArray.length; i++) {
+                                    values.add((int) currentLetterTransitionsArray[i]);
+
+                                    if (this.finalVars.contains((int) currentLetterTransitionsArray[i])) {
+                                        finalState = true;
+                                    }
+                                }
+                            }
+
+
+
+                            //Lambda checking for additional transitions happens here
+
+
+                        }
+
+                        if (values.size() == 0) {
+                            values.add(-1);
+                            dfa.getStates().get(pointer).addTransition(new Pair<>(key, values));
+
+                            if (!dfa.isTrapStateExists()) {
+                                SetOfStates trapState = new SetOfStates(values, finalState);
+                                dfa.setTrapStateExists(true);
+                                dfa.addSetOfStates(trapState);
                             }
                         }
                         else {
-                            //state doesn't have any transitions defined for this letter
+                            //Check that the values created isn't already a state in dfa.states
+                            SetOfStates newSetOfStates = new SetOfStates(values, finalState);
+                            dfa.getStates().get(pointer).addTransition(new Pair<>(key, values));
+
+                            if (!dfa.isAlreadyInStates(newSetOfStates)) {
+                                dfa.addSetOfStates(newSetOfStates);
+                            }
                         }
-
-                        //Lambda checking
-
                     }
                 }
-
-                if (values.size() == 0) {
-                    values.add(-1);
-
-                    if (!dfa.isTrapStateExists()) {
-                        SetOfStates trapState = new SetOfStates(values, false);
-                    }
-                }
-
+                processed++;
+                pointer++;
             }
         }
 

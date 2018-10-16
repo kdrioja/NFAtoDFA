@@ -60,10 +60,10 @@ public class SetOfStates {
         StringBuilder result = new StringBuilder();
 
         if (this.finalState) {
-            result.append("Final state " + this.setOfStates.toString() + " -> ");
+            result.append("Final state\t" + this.setOfStates.toString() + " -> ");
         }
         else {
-            result.append("Non-final state " + this.setOfStates.toString() + " -> ");
+            result.append("Non-final state\t" + this.setOfStates.toString() + " -> ");
         }
 
         for (int t = 0; t < this.transitions.getSize(); t++) {

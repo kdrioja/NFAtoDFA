@@ -37,6 +37,10 @@ public class Driver {
 
         System.out.println(a);
 
+        System.out.println(a.transformToDFA());
+
+
+        /*
         System.out.println(new State(0, false, tempArray));
 
         LinkedHashSet<Integer> aa = new LinkedHashSet<>();
@@ -50,7 +54,6 @@ public class Driver {
         newnewnew.add(7);
         newnewnew.add(2);
         System.out.println(newnew.equals(newnewnew));
-
-
+        */
     }
 }
