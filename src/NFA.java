@@ -122,16 +122,32 @@ public class NFA {
                                 }
                             }
 
+
                             //Lambda checking for additional transitions happens here
-                            if (this.lambdaTransitions) {
+                            //if (this.lambdaTransitions) {
                                 int lambdaIndex = this.inputAlphabet.getSize() - 1;
                                 //System.out.println(lambdaIndex);
+                                //System.out.println("stateName: " + stateName);
+                                //System.out.println("lambdaIndex: " + lambdaIndex);
+                                //System.out.println(key);
                                 LinkedHashSet<Integer> currentLambdaTransitions = this.states.get(stateName).getTransitions().get(lambdaIndex).getValue();
 
+
                                 if (currentLambdaTransitions != null) {
-                                    System.out.println(currentLambdaTransitions);
+                                    Object[] currentLambdaTransitionsArray = currentLambdaTransitions.toArray();
+                                    for (int i = 0; i < currentLambdaTransitionsArray.length; i++) {
+
+                                        // if the key is defined for the lambda transition, add it
+                                        if (this.states.get((int) currentLambdaTransitionsArray[i]).getTransitions().get(l).getValue() != null) {
+                                            values.add((int) currentLambdaTransitionsArray[i]);
+
+                                            if (this.finalVars.contains((int) currentLambdaTransitionsArray[i])) {
+                                                finalState = true;
+                                            }
+                                        }
+                                    }
                                 }
-                            }
+                            //}*/
                         }
 
 
