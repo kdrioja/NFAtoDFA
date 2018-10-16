@@ -8,12 +8,14 @@ public class DFA {
     private ArrayList<String> inputAlphabet;
     private int startVar;
     private LinkedHashSet<Integer> finalVars;
+    private boolean trapStateExists;
 
     public DFA(int startVar, LinkedHashSet<Integer> finalVars, ArrayList<String> inputAlphabet) {
         this.states = new ArrayList<>();
         this.startVar = startVar;
         this.finalVars = finalVars;
         this.inputAlphabet = inputAlphabet;
+        this.trapStateExists = false;
     }
 
     public void addSetOfStates(SetOfStates newSetOfStates) {
@@ -52,6 +54,14 @@ public class DFA {
 
     public void setFinalVars(LinkedHashSet<Integer> finalVars) {
         this.finalVars = finalVars;
+    }
+
+    public boolean isTrapStateExists() {
+        return trapStateExists;
+    }
+
+    public void setTrapStateExists(boolean trapStateExists) {
+        this.trapStateExists = trapStateExists;
     }
 
     public String toString() {

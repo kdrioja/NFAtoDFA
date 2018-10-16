@@ -89,10 +89,15 @@ public class NFA {
                         else {
 
                         }
+
+
+
                     }
                 }
 
-                
+                if (values.size() == 0) {
+                    values.add(-1);
+                }
 
             }
         }
