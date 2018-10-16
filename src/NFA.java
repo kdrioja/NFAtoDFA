@@ -73,82 +73,24 @@ public class NFA {
                 String key = this.inputAlphabet.get(l);
                 LinkedHashSet<Integer> values = new LinkedHashSet<>();
 
-
-                for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
-                    int stateName = (Integer) stateNames[stateInSet];
-                    ArrayList currentStateTransitions = this.states.get(stateName).getTransitions();
-                    
-
-                }
-            }
-        }
-
-
-
-        /*
-        // Process start state 0
-        LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
-        setOfStates.add(0);
-        ArrayList<Pair<String, LinkedHashSet<Integer>>> startTransitions = this.states.get(0).getTransitions();
-        ArrayList<Pair<String, LinkedHashSet<Integer>>> newTransitions = new ArrayList<>();
-        boolean finalState = this.states.get(0).isFinalState();
-
-        for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
-            String key = this.inputAlphabet.get(l);
-            LinkedHashSet<Integer> value = startTransitions.get(l).getValue();
-
-            if (key.equals("L")) {
-                continue;
-            }
-            else {
-
-                if (value == null) {
-                    value = new LinkedHashSet<>();
-                    value.add(-1);
-                    newTransitions.add(new Pair<>(key, value));
-                    dfa.addSetOfStates(new SetOfStates(setOfStates, newTransitions, finalState));
-
-                    LinkedHashSet<Integer> trapState = new LinkedHashSet<>();
-                    trapState.add(-1);
-                    ArrayList<Pair<String, LinkedHashSet<Integer>>> trapTransitions = new ArrayList<>();
-
+                if (key.equals("L")) {
 
                 }
                 else {
-                    if(this.lambdaTransitions) {
-                        //last elem of alphabet is L
-                    }
-                    else {
-                        dfa.addSetOfStates(new SetOfStates(setOfStates, newTransitions, finalState));
+                    for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
+                        int stateName = (Integer) stateNames[stateInSet];
+                        Object[] currentLetterTransitions = (Integer[]) this.states.get(stateName).getTransitions().get(l).getValue().toArray();
+
+                        if (currentLetterTransitions.length != 0) {
+                            for (int i = 0; i < currentLetterTransitions.length; i++) {
+                                values.add((int) currentLetterTransitions[i]);
+                            }
+                        }
                     }
                 }
             }
         }
-        */
-
-        /*
-        // Process start state 0
-        State startState = this.states.get(0);
-        LinkedHashSet<Integer> setOfStates = new LinkedHashSet<>();
-        setOfStates.add(startState.getName());
-        ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions = new ArrayList<>();
-        boolean finalState = startState.isFinalState();
-
-        for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
-            LinkedHashSet<Integer> values = new LinkedHashSet<>();
-            Object[] setOfStatesArray = setOfStates.toArray();
-
-            for (int s = 0; s < setOfStatesArray.length; s++) {
-                int state = (Integer) setOfStatesArray[s];
-                this.states.get(state).getTransitions().get(l)
-                values.addAll()
-            }
-
-
-            Pair newTransition = new Pair<>(this.inputAlphabet.get(l), values);
-            transitions.add(newTransition);
-        }
-        */
+        
         return dfa;
     }
 
