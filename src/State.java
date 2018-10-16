@@ -48,7 +48,7 @@ public class State {
 
         for (int i = 0; i < this.transitions.getSize(); i++) {
             if (this.transitions.get(i).getValue() == null) {
-                result.append("(" + this.transitions.get(i).getKey() + ", [] )   ");
+                result.append("(" + this.transitions.get(i).getKey() + ", [])   ");
             }
             else {
                 result.append("(" + this.transitions.get(i).getKey() + ", " + this.transitions.get(i).getValue() + ")   ");

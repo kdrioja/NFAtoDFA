@@ -115,7 +115,9 @@ public class NFA {
 
 
                             //Lambda checking for additional transitions happens here
-
+                            if (this.lambdaTransitions) {
+                                
+                            }
 
                         }
 
@@ -187,11 +189,13 @@ public class NFA {
         }
         else {
             result.append("NFA\nInput alphabet: " + this.inputAlphabet + "\n");
+            result.append("Starting state: " + this.startVar + "\tFinal states: " + this.finalVars + "\n");
+
             for (int i = 0; i < this.states.getSize(); i++) {
                 result.append(this.states.get(i).getName() + " -> ");
                 for (int p = 0; p < this.states.get(i).getTransitions().getSize(); p++) {
                     if (this.states.get(i).getTransitions().get(p).getValue() == null) {
-                        result.append("(" + this.states.get(i).getTransitions().get(p).getKey() + ", - )   ");
+                        result.append("(" + this.states.get(i).getTransitions().get(p).getKey() + ", [])   ");
                     }
                     else {
                         result.append("(" + this.states.get(i).getTransitions().get(p).getKey() + ", " + this.states.get(i).getTransitions().get(p).getValue() + ")   ");
