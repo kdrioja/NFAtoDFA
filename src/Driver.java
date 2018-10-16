@@ -44,8 +44,12 @@ public class Driver {
         aa.add(1);
 
         LinkedHashSet<Integer> newnew = new LinkedHashSet<>();
-        
-
+        newnew.add(2);
+        newnew.add(7);
+        LinkedHashSet<Integer> newnewnew = new LinkedHashSet<>();
+        newnewnew.add(7);
+        newnewnew.add(2);
+        System.out.println(newnew.equals(newnewnew));
 
 
     }

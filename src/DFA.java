@@ -24,6 +24,15 @@ public class DFA {
         }
     }
 
+    public boolean isAlreadyInStates(SetOfStates setToBeAdded) {
+        for (int i = 0; i < this.states.getSize(); i++) {
+            if (this.states.get(i).getSetOfStates().equals(setToBeAdded.getSetOfStates())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<SetOfStates> getStates() {
         return states;
     }

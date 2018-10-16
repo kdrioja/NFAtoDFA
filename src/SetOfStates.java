@@ -24,7 +24,7 @@ public class SetOfStates {
     }
 
     public boolean sameSetOfStates(SetOfStates otherSetOfStates) {
-        if (this.setOfStates.size() != otherSetOfStates.setOfStates.size()) {
+        if (otherSetOfStates == null) {
             return false;
         }
         else {

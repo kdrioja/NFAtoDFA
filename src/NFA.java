@@ -87,16 +87,20 @@ public class NFA {
                             }
                         }
                         else {
-
+                            //state doesn't have any transitions defined for this letter
                         }
 
-
+                        //Lambda checking
 
                     }
                 }
 
                 if (values.size() == 0) {
                     values.add(-1);
+
+                    if (!dfa.isTrapStateExists()) {
+                        SetOfStates trapState = new SetOfStates(values, false);
+                    }
                 }
 
             }
