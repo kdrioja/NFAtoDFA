@@ -38,5 +38,15 @@ public class Driver {
         System.out.println(a);
 
         System.out.println(new State(0, false, tempArray));
+
+        LinkedHashSet<Integer> aa = new LinkedHashSet<>();
+        aa.add(0);
+        aa.add(1);
+
+        LinkedHashSet<Integer> newnew = new LinkedHashSet<>();
+        
+
+
+
     }
 }

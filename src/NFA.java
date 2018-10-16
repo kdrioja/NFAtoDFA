@@ -75,7 +75,10 @@ public class NFA {
 
 
                 for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
+                    int stateName = (Integer) stateNames[stateInSet];
+                    ArrayList currentStateTransitions = this.states.get(stateName).getTransitions();
                     
+
                 }
             }
         }
