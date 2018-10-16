@@ -44,6 +44,7 @@ public class Driver {
         ArrayList<String> inputAlphB = new ArrayList<>();
         inputAlphB.add("a");
         inputAlphB.add("b");
+        inputAlphB.add("L");
         LinkedHashSet<Integer> finalVars = new LinkedHashSet<>();
         finalVars.add(1);
         NFA b = new NFA(0, finalVars, inputAlphB, true);

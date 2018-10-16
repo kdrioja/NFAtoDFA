@@ -42,9 +42,23 @@ public class NFA {
     }
 
     public DFA transformToDFA() {
+        DFA dfa;
         int processed = 0;
         int pointer = 0;
-        DFA dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
+
+        if (this.lambdaTransitions) {
+            ArrayList<String> newInputAlphabet = new ArrayList<>();
+
+            for (int i = 0; i < this.inputAlphabet.getSize(); i++) {
+                if (!this.inputAlphabet.get(i).equals("L")) {
+                    newInputAlphabet.add(this.inputAlphabet.get(i));
+                }
+            }
+            dfa = new DFA(this.startVar, this.finalVars, newInputAlphabet);
+        }
+        else {
+            dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
+        }
         // also have member private ArrayList<SetOfStates> states;
 
         //  can be added later first create the SetOfStates and add it to dfa and then while
@@ -71,8 +85,8 @@ public class NFA {
             Object[] stateNames = dfa.getStates().get(pointer).getSetOfStates().toArray();
             // If trap state populate it
             if ((int) stateNames[0] == -1) {
-                for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
-                    String key = this.inputAlphabet.get(l);
+                for (int l = 0; l < dfa.getInputAlphabet().getSize(); l++) {
+                    String key = dfa.getInputAlphabet().get(l);
                     LinkedHashSet<Integer> values = new LinkedHashSet<>();
 
                     if (!key.equals("L")) {
@@ -87,16 +101,12 @@ public class NFA {
 
             // Not a trap state
             else {
-                for (int l = 0; l < this.inputAlphabet.getSize(); l++) {
-                    String key = this.inputAlphabet.get(l);
+                for (int l = 0; l < dfa.getInputAlphabet().getSize(); l++) {
+                    String key = dfa.getInputAlphabet().get(l);
                     LinkedHashSet<Integer> values = new LinkedHashSet<>();
                     boolean finalState = false;
 
-                    if (key.equals("L")) {
-
-                    }
-
-                    else {
+                    if (!key.equals("L")) {
                         for (int stateInSet = 0; stateInSet < stateNames.length; stateInSet++) {
                             int stateName = (Integer) stateNames[stateInSet];
                             LinkedHashSet<Integer> currentLetterTransitions = this.states.get(stateName).getTransitions().get(l).getValue();
@@ -112,15 +122,20 @@ public class NFA {
                                 }
                             }
 
-
-
                             //Lambda checking for additional transitions happens here
                             if (this.lambdaTransitions) {
-                                
-                            }
+                                int lambdaIndex = this.inputAlphabet.getSize() - 1;
+                                //System.out.println(lambdaIndex);
+                                LinkedHashSet<Integer> currentLambdaTransitions = this.states.get(stateName).getTransitions().get(lambdaIndex).getValue();
 
+                                if (currentLambdaTransitions != null) {
+                                    System.out.println(currentLambdaTransitions);
+                                }
+                            }
                         }
 
+
+                        // Finalized the transition set of states
                         if (values.size() == 0) {
                             values.add(-1);
                             dfa.getStates().get(pointer).addTransition(new Pair<>(key, values));
@@ -146,7 +161,6 @@ public class NFA {
                 pointer++;
             }
         }
-
         return dfa;
     }
 
