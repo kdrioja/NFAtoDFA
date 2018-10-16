@@ -81,16 +81,22 @@ public class NFA {
                         int stateName = (Integer) stateNames[stateInSet];
                         Object[] currentLetterTransitions = (Integer[]) this.states.get(stateName).getTransitions().get(l).getValue().toArray();
 
-                        if (currentLetterTransitions.length != 0) {
+                        if (currentLetterTransitions != null && currentLetterTransitions.length != 0) {
                             for (int i = 0; i < currentLetterTransitions.length; i++) {
                                 values.add((int) currentLetterTransitions[i]);
                             }
                         }
+                        else {
+
+                        }
                     }
                 }
+
+                
+
             }
         }
-        
+
         return dfa;
     }
 
