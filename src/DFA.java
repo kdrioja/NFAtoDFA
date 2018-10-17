@@ -6,6 +6,8 @@
 import java.util.LinkedHashSet;
 
 public class DFA {
+    // Note that {-1} represents a trap state
+    
     // Array of SetOfStates objects representing the states of the DFA
     private ArrayList<SetOfStates> states;
     // Array containing the input alphabet
