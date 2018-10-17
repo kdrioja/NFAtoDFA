@@ -160,6 +160,13 @@ public class Driver {
     }
 
     public static void main(String[] args) {
+        System.out.println("Test case A:");
+        testCaseA();
+        System.out.println("Test case B:");
+        testCaseB();
+        System.out.println("Test case C");
+        testCaseC();
+        System.out.println("Test case D");
         testCaseD();
     }
 }
