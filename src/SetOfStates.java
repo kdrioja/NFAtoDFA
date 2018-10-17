@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
 
 public class SetOfStates {
     /*
-    Object was used to represent a "set of states" that is typically formed through the change of an NFA to a DFA
+    Object was used to represent a "set of states" in a DFA
      */
     // Set containing the names of states therefore creating a new state
     private LinkedHashSet<Integer> setOfStates;
