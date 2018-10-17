@@ -1,22 +1,25 @@
-import javafx.util.Pair;
-import sun.awt.image.ImageWatched;
+/*
+    Kenia Rioja-Naranjo
+    CSC 471 Project 1
+ */
 
+import javafx.util.Pair;
 import java.util.LinkedHashSet;
 
 public class NFA {
-    // NFA represented as a matrix, where the columns correspond to input
-    // symbols, while the rows correspond to states
-    // Matrix cells are subsets of states representing the transitions for
-    // the corresponding states and symbols
-    // Lambda is represented as 'L' in the inputAlphabet and is always at the
-    // end of inputAlphabet and transition ArrayLists
-
+    // Array of State objects representing the states in the NFA
     private ArrayList<State> states;
+    // Array containing the input alphabet
+    // lambda transitions are represented as 'L' and are always at the end of the array
     private ArrayList<String> inputAlphabet;
+    // Start state of NFA
     private int startVar;
+    // Set of Integers that represent the final states
     private LinkedHashSet<Integer> finalVars;
+    // True if the NFA contains lambda transitions, false otherwise
     private boolean lambdaTransitions;
 
+    // Constructor
     public NFA(int startVar, LinkedHashSet<Integer> finalVar, ArrayList<String> inputAlphabet, boolean lambdaTransitions) {
         this.startVar = startVar;
         this.finalVars = finalVar;
@@ -25,12 +28,14 @@ public class NFA {
         this.lambdaTransitions = lambdaTransitions;
     }
 
+    // Adds a new State object to the NFA's states array
     public void addState(State newState) {
         if (newState != null) {
             this.states.add(newState);
         }
     }
 
+    // Returns the name of the start state
     private State getStartingState(){
         for (int s = 0; s < this.states.getSize(); s++) {
             if (this.states.get(s).getName() == this.startVar) {
@@ -41,6 +46,7 @@ public class NFA {
         return null;
     }
 
+    // Returns a DFA from an NFA
     public DFA transformToDFA() {
         DFA dfa;
         int processed = 0;
@@ -59,19 +65,6 @@ public class NFA {
         else {
             dfa = new DFA(this.startVar, this.finalVars, this.inputAlphabet);
         }
-        // also have member private ArrayList<SetOfStates> states;
-
-        //  can be added later first create the SetOfStates and add it to dfa and then while
-        //  the number of items in the dfa is != to the processed amount then keep processing the next item in the dfa's states arraylist
-        //  maybe keep a pointer outside of the loop? HMMM, but first have to create the first and add it
-        //  the first is the start symbol which is 0 in this case
-
-        // SetOfStates member variables
-        // private LinkedHashSet<Integer> setOfStates;
-        // private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
-        // private boolean finalState;
-        // public SetOfStates(LinkedHashSet<Integer> set, boolean finalState) {
-
 
         // Process start state
         State startState = getStartingState();
@@ -83,6 +76,7 @@ public class NFA {
 
         while (processed != dfa.getStates().getSize()) {
             Object[] stateNames = dfa.getStates().get(pointer).getSetOfStates().toArray();
+
             // If trap state populate it
             if ((int) stateNames[0] == -1) {
                 for (int l = 0; l < dfa.getInputAlphabet().getSize(); l++) {
@@ -122,34 +116,25 @@ public class NFA {
                                 }
                             }
 
-
                             //Lambda checking for additional transitions happens here
-                            //if (this.lambdaTransitions) {
-                                int lambdaIndex = this.inputAlphabet.getSize() - 1;
-                                //System.out.println(lambdaIndex);
-                                //System.out.println("stateName: " + stateName);
-                                //System.out.println("lambdaIndex: " + lambdaIndex);
-                                //System.out.println(key);
-                                LinkedHashSet<Integer> currentLambdaTransitions = this.states.get(stateName).getTransitions().get(lambdaIndex).getValue();
+                            int lambdaIndex = this.inputAlphabet.getSize() - 1;
+                            LinkedHashSet<Integer> currentLambdaTransitions = this.states.get(stateName).getTransitions().get(lambdaIndex).getValue();
 
+                            if (currentLambdaTransitions != null) {
+                                Object[] currentLambdaTransitionsArray = currentLambdaTransitions.toArray();
+                                for (int i = 0; i < currentLambdaTransitionsArray.length; i++) {
 
-                                if (currentLambdaTransitions != null) {
-                                    Object[] currentLambdaTransitionsArray = currentLambdaTransitions.toArray();
-                                    for (int i = 0; i < currentLambdaTransitionsArray.length; i++) {
+                                    // if the key is defined for the lambda transition, add it
+                                    if (this.states.get((int) currentLambdaTransitionsArray[i]).getTransitions().get(l).getValue() != null) {
+                                        values.add((int) currentLambdaTransitionsArray[i]);
 
-                                        // if the key is defined for the lambda transition, add it
-                                        if (this.states.get((int) currentLambdaTransitionsArray[i]).getTransitions().get(l).getValue() != null) {
-                                            values.add((int) currentLambdaTransitionsArray[i]);
-
-                                            if (this.finalVars.contains((int) currentLambdaTransitionsArray[i])) {
-                                                finalState = true;
-                                            }
+                                        if (this.finalVars.contains((int) currentLambdaTransitionsArray[i])) {
+                                            finalState = true;
                                         }
                                     }
                                 }
-                            //}*/
+                            }
                         }
-
 
                         // Finalized the transition set of states
                         if (values.size() == 0) {
@@ -212,6 +197,7 @@ public class NFA {
         this.finalVars = finalVars;
     }
 
+    // Returns a string of the NFA
     public String toString() {
         StringBuilder result = new StringBuilder();
         if (this.states.getSize() == 0) {

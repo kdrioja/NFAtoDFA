@@ -6,7 +6,7 @@
 import java.util.LinkedHashSet;
 
 public class DFA {
-    // Array of SetOfStates objects
+    // Array of SetOfStates objects representing the states of the DFA
     private ArrayList<SetOfStates> states;
     // Array containing the input alphabet
     private ArrayList<String> inputAlphabet;

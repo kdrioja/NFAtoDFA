@@ -7,33 +7,27 @@ import javafx.util.Pair;
 import java.util.LinkedHashSet;
 
 public class SetOfStates {
+    /*
+    Object was used to represent a "set of states" that is typically formed through the change of an NFA to a DFA
+     */
+    // Set containing the names of states therefore creating a new state
     private LinkedHashSet<Integer> setOfStates;
+    // Array of transitions for the set of states
     private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
+    // True if a final state, false if non-final state
     private boolean finalState;
 
+    // Constructor
     public SetOfStates(LinkedHashSet<Integer> set, boolean finalState) {
         this.setOfStates = set;
         this.transitions = new ArrayList<>();
         this.finalState = finalState;
     }
-    public SetOfStates(LinkedHashSet<Integer> set, ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions, boolean finalState) {
-        this.setOfStates = set;
-        this.transitions = transitions;
-        this.finalState = finalState;
-    }
 
+    // Adds a transition tp the set of states
     public void addTransition(Pair<String, LinkedHashSet<Integer>> newTransitionPair) {
         if (newTransitionPair != null) {
             this.transitions.add(newTransitionPair);
-        }
-    }
-
-    public boolean sameSetOfStates(SetOfStates otherSetOfStates) {
-        if (otherSetOfStates == null) {
-            return false;
-        }
-        else {
-            return this.setOfStates.equals(otherSetOfStates.setOfStates);
         }
     }
 
@@ -61,6 +55,7 @@ public class SetOfStates {
         this.finalState = finalState;
     }
 
+    // Returns a string with the name of the set of states and it's transitions
     public String toString() {
         StringBuilder result = new StringBuilder();
 
