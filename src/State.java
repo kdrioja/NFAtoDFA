@@ -7,10 +7,17 @@ import javafx.util.Pair;
 import java.util.LinkedHashSet;
 
 public class State {
+    /*
+    Object was used to represent a State in a NFA
+     */
+    // Name of the state
     private int name;
+    // Array containing all defined transitions
     private ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions;
+    // True if final state, false if non-final
     private boolean finalState;
 
+    // Constructor
     public State(int name, boolean finalState, ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions) {
         this.name = name;
         this.finalState = finalState;
@@ -41,6 +48,7 @@ public class State {
         this.finalState = finalState;
     }
 
+    // Returns string with the state's name and it's transitions
     public String toString() {
         StringBuilder result = new StringBuilder();
         if (this.finalState) {
