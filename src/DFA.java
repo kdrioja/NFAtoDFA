@@ -1,15 +1,23 @@
+/*
+    Kenia Rioja-Naranjo
+    CSC 471 Project 1
+ */
+
 import java.util.LinkedHashSet;
 
 public class DFA {
-    // Output of program is DFA matrix
-    // Each cell should be a single state
-
+    // Array of SetOfStates objects
     private ArrayList<SetOfStates> states;
+    // Array containing the input alphabet
     private ArrayList<String> inputAlphabet;
+    // Start state of DFA
     private int startVar;
+    // Set of Integers that represent the final states
     private LinkedHashSet<Integer> finalVars;
+    // Boolean for there already being a trap state in DFA
     private boolean trapStateExists;
 
+    // Constructor
     public DFA(int startVar, LinkedHashSet<Integer> finalVars, ArrayList<String> inputAlphabet) {
         this.states = new ArrayList<>();
         this.startVar = startVar;
@@ -18,12 +26,14 @@ public class DFA {
         this.trapStateExists = false;
     }
 
+    // Adds a SetOfStates object to DFA's states array
     public void addSetOfStates(SetOfStates newSetOfStates) {
         if (newSetOfStates != null) {
             this.states.add(newSetOfStates);
         }
     }
 
+    // Checks if a set of states is already in DFA states array
     public boolean isAlreadyInStates(SetOfStates setToBeAdded) {
         for (int i = 0; i < this.states.getSize(); i++) {
             if (this.states.get(i).getSetOfStates().equals(setToBeAdded.getSetOfStates())) {
@@ -73,6 +83,7 @@ public class DFA {
         this.trapStateExists = trapStateExists;
     }
 
+    // Prints out the DFA
     public String toString() {
         StringBuilder result = new StringBuilder();
         if (this.states.getSize() == 0) {

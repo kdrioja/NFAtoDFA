@@ -1,3 +1,8 @@
+/*
+    Kenia Rioja-Naranjo
+    CSC 471 Project 1
+ */
+
 import javafx.util.Pair;
 import java.util.LinkedHashSet;
 
@@ -125,12 +130,12 @@ public class Driver {
 
     public static void testCaseD() {
         //d
-        ArrayList<String> inputAlphA = new ArrayList<>();
-        inputAlphA.add("a");
-        inputAlphA.add("b");
+        ArrayList<String> inputAlphD = new ArrayList<>();
+        inputAlphD.add("a");
+        inputAlphD.add("b");
         LinkedHashSet<Integer> finalVars = new LinkedHashSet<>();
         finalVars.add(1);
-        NFA d = new NFA(0, finalVars, inputAlphA, false);
+        NFA d = new NFA(0, finalVars, inputAlphD, false);
 
         ArrayList<Pair<String, LinkedHashSet<Integer>>> tempArray = new ArrayList<>();
         LinkedHashSet<Integer> tempSet = new LinkedHashSet<>();
@@ -162,10 +167,13 @@ public class Driver {
     public static void main(String[] args) {
         System.out.println("Test case A:");
         testCaseA();
+
         System.out.println("Test case B:");
         testCaseB();
+
         System.out.println("Test case C");
         testCaseC();
+
         System.out.println("Test case D");
         testCaseD();
     }

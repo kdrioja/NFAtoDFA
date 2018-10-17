@@ -1,3 +1,8 @@
+/*
+    Kenia Rioja-Naranjo
+    CSC 471 Project 1
+ */
+
 public class ArrayList <E> implements BareBonesArrayList<E> {
     private int size; //Number of elements in array
     private int capacity; //Capacity of array

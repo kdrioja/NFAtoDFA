@@ -1,3 +1,8 @@
+/*
+    Kenia Rioja-Naranjo
+    CSC 471 Project 1
+ */
+
 public interface BareBonesArrayList <E>{
     void add(E a); //Used to add to the end of the list
     void add(E a, int index); //Overloaded method to add at specified index

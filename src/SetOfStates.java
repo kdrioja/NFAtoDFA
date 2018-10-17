@@ -1,3 +1,8 @@
+/*
+    Kenia Rioja-Naranjo
+    CSC 471 Project 1
+ */
+
 import javafx.util.Pair;
 import java.util.LinkedHashSet;
 
