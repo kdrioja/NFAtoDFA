@@ -35,25 +35,6 @@ public class SetOfStates {
         return setOfStates;
     }
 
-    public void setSetOfStates(LinkedHashSet<Integer> setOfStates) {
-        this.setOfStates = setOfStates;
-    }
-
-    public ArrayList<Pair<String, LinkedHashSet<Integer>>> getTransitions() {
-        return transitions;
-    }
-
-    public void setTransitions(ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions) {
-        this.transitions = transitions;
-    }
-
-    public boolean isFinalState() {
-        return finalState;
-    }
-
-    public void setFinalState(boolean finalState) {
-        this.finalState = finalState;
-    }
 
     // Returns a string with the name of the set of states and it's transitions
     public String toString() {

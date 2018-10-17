@@ -47,32 +47,8 @@ public class DFA {
         return states;
     }
 
-    public void setStates(ArrayList<SetOfStates> states) {
-        this.states = states;
-    }
-
     public ArrayList<String> getInputAlphabet() {
         return inputAlphabet;
-    }
-
-    public void setInputAlphabet(ArrayList<String> inputAlphabet) {
-        this.inputAlphabet = inputAlphabet;
-    }
-
-    public int getStartVar() {
-        return startVar;
-    }
-
-    public void setStartVar(int startVar) {
-        this.startVar = startVar;
-    }
-
-    public LinkedHashSet<Integer> getFinalVars() {
-        return finalVars;
-    }
-
-    public void setFinalVars(LinkedHashSet<Integer> finalVars) {
-        this.finalVars = finalVars;
     }
 
     public boolean isTrapStateExists() {

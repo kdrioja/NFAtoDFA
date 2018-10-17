@@ -165,38 +165,6 @@ public class NFA {
         return dfa;
     }
 
-    public ArrayList<State> getStates() {
-        return states;
-    }
-
-    public void setStates(ArrayList<State> states) {
-        this.states = states;
-    }
-
-    public ArrayList<String> getInputAlphabet() {
-        return inputAlphabet;
-    }
-
-    public void setInputAlphabet(ArrayList<String> inputAlphabet) {
-        this.inputAlphabet = inputAlphabet;
-    }
-
-    public int getStartVar() {
-        return startVar;
-    }
-
-    public void setStartVar(int startVar) {
-        this.startVar = startVar;
-    }
-
-    public LinkedHashSet<Integer> getFinalVars() {
-        return finalVars;
-    }
-
-    public void setFinalVars(LinkedHashSet<Integer> finalVars) {
-        this.finalVars = finalVars;
-    }
-
     // Returns a string of the NFA
     public String toString() {
         StringBuilder result = new StringBuilder();

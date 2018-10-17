@@ -28,24 +28,12 @@ public class State {
         return name;
     }
 
-    public void setName(int name) {
-        this.name = name;
-    }
-
     public ArrayList<Pair<String, LinkedHashSet<Integer>>> getTransitions() {
         return transitions;
     }
 
-    public void setTransitions(ArrayList<Pair<String, LinkedHashSet<Integer>>> transitions) {
-        this.transitions = transitions;
-    }
-
     public boolean isFinalState() {
         return finalState;
-    }
-
-    public void setFinalState(boolean finalState) {
-        this.finalState = finalState;
     }
 
     // Returns string with the state's name and it's transitions
